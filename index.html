@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Croupier Training</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poker Croupier Training</h1>
+            <div class="score-display">
+                <span class="score-label">Score</span>
+                <span id="score">0 / 0</span>
+            </div>
+        </header>
+
+        <nav class="game-tabs">
+            <button class="tab active">Texas Hold'em</button>
+            <button class="tab disabled" disabled>Omaha</button>
+            <button class="tab disabled" disabled>Bomb Pot</button>
+        </nav>
+
+        <div id="start-screen">
+            <div class="start-card">
+                <h2>Texas Hold'em Croupier Training</h2>
+                <p>Practice calculating pot totals, rake, tips, and winner payouts.</p>
+                <div class="rules-box">
+                    <h3>Rules</h3>
+                    <ul>
+                        <li><strong>Rake:</strong> 5% of the final pot (max 100 kr)</li>
+                        <li><strong>Tip:</strong> 1% of the final pot (rounded to nearest kr)</li>
+                        <li><strong>Jackpot:</strong> Always 20 kr</li>
+                    </ul>
+                </div>
+                <button id="start-btn" class="btn-primary">Start Training</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="hidden">
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <h2>Scenario</h2>
+                    <span id="scenario-number" class="scenario-num">#1</span>
+                </div>
+                <p id="players-info" class="players-info"></p>
+                <div class="rounds-table">
+                    <div class="rounds-header">
+                        <span>Round</span>
+                        <span>Folds</span>
+                        <span>Active</span>
+                        <span>Bet each</span>
+                    </div>
+                    <div id="rounds-body"></div>
+                </div>
+            </div>
+
+            <div class="answer-card">
+                <h3>Your Calculations</h3>
+                <div class="input-row">
+                    <label for="ans-pot">Final Pot</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="ans-pot" inputmode="numeric" placeholder="kr">
+                        <span class="feedback" id="fb-pot"></span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <label for="ans-rake">Rake</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="ans-rake" inputmode="numeric" placeholder="kr">
+                        <span class="feedback" id="fb-rake"></span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <label for="ans-tip">Tip</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="ans-tip" inputmode="numeric" placeholder="kr">
+                        <span class="feedback" id="fb-tip"></span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <label for="ans-jackpot">Jackpot</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="ans-jackpot" inputmode="numeric" placeholder="kr">
+                        <span class="feedback" id="fb-jackpot"></span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <label for="ans-payout">Winner Receives</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="ans-payout" inputmode="numeric" placeholder="kr">
+                        <span class="feedback" id="fb-payout"></span>
+                    </div>
+                </div>
+                <button id="check-btn" class="btn-primary">Check Answers</button>
+            </div>
+
+            <div id="results-card" class="results-card hidden">
+                <div id="results-icon" class="results-icon"></div>
+                <p id="results-text"></p>
+                <div id="results-detail" class="results-detail"></div>
+                <button id="next-btn" class="btn-primary">Next Scenario</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
