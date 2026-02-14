@@ -158,6 +158,25 @@ header h1 {
     color: var(--text);
 }
 
+.tip-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    font-size: 0.85rem;
+}
+
+.tip-table td {
+    padding: 3px 8px;
+    color: var(--text-dim);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tip-table td:last-child {
+    text-align: right;
+    color: var(--gold);
+    font-weight: 600;
+}
+
 /* Buttons */
 .btn-primary {
     background: linear-gradient(135deg, var(--gold), var(--gold-dark));

@@ -39,6 +39,21 @@
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
+    // --- Tip Lookup Table ---
+    function getTip(pot) {
+        if (pot < 600) return 0;
+        if (pot < 1500) return 10;
+        if (pot < 2500) return 20;
+        if (pot < 3500) return 30;
+        if (pot < 5000) return 40;
+        if (pot < 6000) return 50;
+        if (pot < 7000) return 60;
+        if (pot < 8000) return 70;
+        if (pot < 9000) return 80;
+        if (pot < 10000) return 90;
+        return 100;
+    }
+
     // --- Scenario Generation ---
     function generateScenario() {
         const totalPlayers = randomInt(3, 8);
@@ -73,7 +88,7 @@
 
         // Deductions
         const rake = Math.min(100, Math.round(pot * 0.05));
-        const tip = Math.max(10, Math.round(pot * 0.01));
+        const tip = getTip(pot);
         const jackpot = 20;
         const totalDeductions = rake + tip + jackpot;
         const payout = pot - totalDeductions;
