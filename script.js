@@ -22,7 +22,7 @@
     const resultsDetail = document.getElementById('results-detail');
     const answerCard = document.querySelector('.answer-card');
 
-    const fields = ['pot', 'rake', 'tip', 'jackpot', 'payout'];
+    const fields = ['pot', 'rake', 'tip', 'jackpot'];
     const inputs = {};
     const feedbacks = {};
     fields.forEach(f => {
@@ -155,7 +155,6 @@
             rake: 'Rake',
             tip: 'Tip',
             jackpot: 'Jackpot',
-            payout: 'Winner Receives',
         };
         fields.forEach(f => {
             const correct = details[f].correct;
@@ -167,6 +166,8 @@
                 detailHtml += '<div><span class="incorrect-val">\u2717</span> ' + labels[f] + ': You said ' + (answer !== null ? answer + ' kr' : '(empty)') + ' — correct is <strong>' + correct + ' kr</strong></div>';
             }
         });
+        detailHtml += '<hr style="border-color: rgba(255,255,255,0.1); margin: 8px 0;">';
+        detailHtml += '<div><strong>Winner Receives: ' + currentScenario.payout + ' kr</strong></div>';
         resultsDetail.innerHTML = detailHtml;
 
         updateScore();
