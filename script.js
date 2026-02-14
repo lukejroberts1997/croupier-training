@@ -55,7 +55,7 @@
     }
 
     // --- Scenario Generation ---
-    function generateScenario() {
+    function buildScenario() {
         const totalPlayers = randomInt(3, 8);
         let players = totalPlayers;
         const roundNames = ['Pre-flop', 'Flop', 'Turn', 'River'];
@@ -68,8 +68,18 @@
         for (let i = 0; i < 4; i++) {
             let folds = 0;
             if (players > 2) {
-                const maxFolds = Math.min(players - 2, 2);
-                folds = randomInt(0, maxFolds);
+                const maxFolds = Math.min(players - 2, 3);
+                // Weighted towards more folds
+                const roll = Math.random();
+                if (roll < 0.25) {
+                    folds = 0;
+                } else if (roll < 0.55) {
+                    folds = 1;
+                } else if (roll < 0.8) {
+                    folds = 2;
+                } else {
+                    folds = Math.min(maxFolds, 3);
+                }
             }
             players -= folds;
 
@@ -87,7 +97,8 @@
         }
 
         // Deductions
-        const rake = Math.min(100, Math.round(pot * 0.05));
+        const rakeBase = Math.floor(pot / 100) * 100;
+        const rake = Math.min(100, rakeBase * 0.05);
         const tip = getTip(pot);
         const jackpot = 20;
         const totalDeductions = rake + tip + jackpot;
@@ -103,6 +114,19 @@
             totalDeductions: totalDeductions,
             payout: payout,
         };
+    }
+
+    function generateScenario() {
+        // 30% of scenarios should have pot under 2000 for varied rake practice
+        const wantLowPot = Math.random() < 0.3;
+        for (let attempt = 0; attempt < 20; attempt++) {
+            const scenario = buildScenario();
+            if (!wantLowPot || scenario.pot < 2000) {
+                return scenario;
+            }
+        }
+        // Fallback: return whatever we get
+        return buildScenario();
     }
 
     // --- Rendering ---
