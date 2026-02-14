@@ -56,7 +56,7 @@
 
   // --- Scenario Generation ---
   function buildScenario() {
-    const totalPlayers = randomInt(3, 10);
+    const totalPlayers = randomInt(2, 10);
     let players = totalPlayers;
     const roundNames = ["Pre-flop", "Flop", "Turn", "River"];
     const rounds = [];
@@ -131,8 +131,10 @@
   function generateScenario() {
     // 30% of scenarios should have pot under 2000 for varied rake practice
     const wantLowPot = Math.random() < 0.3;
-    for (let attempt = 0; attempt < 20; attempt++) {
+    for (let attempt = 0; attempt < 50; attempt++) {
       const scenario = buildScenario();
+      // Skip scenarios where everyone folds and pot is 0
+      if (scenario.pot === 0) continue;
       if (!wantLowPot || scenario.pot < 2000) {
         return scenario;
       }
