@@ -63,7 +63,10 @@
     let pot = 0;
 
     // Bet ranges per round (realistic)
-    const betOptions = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+    const standardBets = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+    const highrollerBets = [550, 600, 650, 700, 750, 800, 850, 900, 950, 1000];
+    // 25% chance of highroller bets
+    const betOptions = Math.random() < 0.25 ? highrollerBets : standardBets;
 
     for (let i = 0; i < 4; i++) {
       // If only 1 player left, no more betting
